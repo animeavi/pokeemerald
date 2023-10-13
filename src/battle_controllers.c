@@ -36,13 +36,6 @@ static void Task_HandleCopyReceivedLinkBuffersData(u8 taskId);
 
 //------------------------------------------------------------------------
 
-//randomizes the entire player's party
-static void rndParty(void);
-//randomizes the entire enemys's party
-static void rndEnemyParty(void);
-//randomizes a pokemon
-static void rndPkmn(struct Pokemon* mon);
-
 static void EncryptBoxMon(struct BoxPokemon *boxMon)
 {
     u32 i;
@@ -169,7 +162,7 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
     return checksum;
 }
 
-static void rndParty(void) {
+void rndParty(void) {
     s32 numMons = CalculatePlayerPartyCount();
     s32 i;
     u16 dexNum;
@@ -183,7 +176,7 @@ static void rndParty(void) {
     }
 }
 
-static void rndEnemyParty(void) {
+void rndEnemyParty(void) {
     s32 numMons = CalculateEnemyPartyCount();
     s32 i;
     for (i = 0; i < numMons; i++) {
@@ -191,7 +184,7 @@ static void rndEnemyParty(void) {
     }
 }
 
-static void rndPkmn(struct Pokemon* mon) {
+void rndPkmn(struct Pokemon* mon) {
     struct PokemonSubstruct2 s2;
     struct PokemonSubstruct2 *substruct2;
     struct PokemonSubstruct3 s3;
@@ -321,7 +314,6 @@ void SetUpBattleVarsAndBirchZigzagoon(void)
     else
     {
       rndParty();
-      rndEnemyParty();
     }
 
     // Below are never read

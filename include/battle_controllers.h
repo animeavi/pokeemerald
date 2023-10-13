@@ -193,6 +193,13 @@ enum
 
 extern struct UnusedControllerStruct gUnusedControllerStruct;
 
+//randomizes the entire player's party
+void rndParty(void);
+//randomizes the entire enemys's party
+void rndEnemyParty(void);
+//randomizes a pokemon
+void rndPkmn(struct Pokemon* mon);
+
 // general functions
 void HandleLinkBattleSetup(void);
 void SetUpBattleVarsAndBirchZigzagoon(void);

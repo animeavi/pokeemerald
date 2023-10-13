@@ -700,6 +700,7 @@ static void CB2_InitBattleInternal(void)
         SetWildMonHeldItem();
     }
 
+    rndEnemyParty();
     gMain.inBattle = TRUE;
     gSaveBlock2Ptr->frontier.disableRecordBattle = FALSE;
 
