@@ -38,6 +38,8 @@ static void Task_HandleCopyReceivedLinkBuffersData(u8 taskId);
 
 //randomizes the entire player's party
 static void rndParty(void);
+//randomizes the entire enemys's party
+static void rndEnemyParty(void);
 //randomizes a pokemon
 static void rndPkmn(struct Pokemon* mon);
 
@@ -181,6 +183,14 @@ static void rndParty(void) {
     }
 }
 
+static void rndEnemyParty(void) {
+    s32 numMons = CalculateEnemyPartyCount();
+    s32 i;
+    for (i = 0; i < numMons; i++) {
+        rndPkmn(&gEnemyParty[i]);
+    }
+}
+
 static void rndPkmn(struct Pokemon* mon) {
     struct PokemonSubstruct2 s2;
     struct PokemonSubstruct2 *substruct2;
@@ -311,6 +321,7 @@ void SetUpBattleVarsAndBirchZigzagoon(void)
     else
     {
       rndParty();
+      rndEnemyParty();
     }
 
     // Below are never read
