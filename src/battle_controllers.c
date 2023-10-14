@@ -167,12 +167,24 @@ void rndParty(void) {
     s32 i;
     u16 dexNum;
     u32 personality;
+
     for (i = 0; i < numMons; i++) {
         rndPkmn(&gPlayerParty[i]);
         dexNum = SpeciesToNationalPokedexNum(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0));
         personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY, 0);
         HandleSetPokedexFlag(dexNum, FLAG_SET_SEEN, personality);
         HandleSetPokedexFlag(dexNum, FLAG_SET_CAUGHT, personality);
+
+        if (BATTLE_TYPE_WALLY_TUTORIAL && (i == 0))
+        {
+            s8 move = MOVE_SELF_DESTRUCT;
+            u8 name_edwin[POKEMON_NAME_LENGTH] = _("GREENWIN");
+            u8 name_rogerick[POKEMON_NAME_LENGTH] = _("ROGERICK");
+
+            SetMonData(&gPlayerParty[0], MON_DATA_MOVE1 + 0, &move);
+            SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, name_edwin);
+            SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, name_rogerick);
+        }
     }
 }
 
